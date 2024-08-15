@@ -11,7 +11,7 @@ API_MODELS = {
     "https://api.arliai.com/v1/chat/completions": ["Meta-Llama-3.1-8B-Instruct"]
 }
 
-SESSION = 2
+SESSION = 1
 
 # Define your prompts to test with
 SHORT_PROMPTS = [
@@ -59,7 +59,7 @@ def generation_test(i, api, model):
         ctokens = api_out['usage']['completion_tokens']
         itokens = api_out['usage']['prompt_tokens']
         tps = round(ctokens / ctime, ndigits=1)
-        print(f"---[Thread {i}, API: {api}, Model: {model}, Prompt {prompt_no}, {itokens} tokens long] Generation stats: time {ctime}s, {ctokens} tokens, {tps} tokens/s---")
+        print(f"---[Thread {i}, Model: {model}, Prompt {prompt_no}, {itokens} tokens long] Generation stats: time {ctime}s, {ctokens} tokens, {tps} tokens/s---")
         total_tokens += ctokens
         prompt_no += 1
     avg_time = round(total_time / len(SHORT_PROMPTS), ndigits=3)
@@ -96,7 +96,7 @@ def ingestion_test(i, api, model):
         total_time += ctime
         itokens = api_out['usage']['prompt_tokens']
         tps = round(itokens / ctime, ndigits=1)
-        print(f"---[Thread {i}, API: {api}, Model: {model}, Prompt {prompt_no}] Ingestion stats: time {ctime}s, {itokens} tokens, {tps} tokens/s---")
+        print(f"---[Thread {i}, Model: {model}, Prompt {prompt_no}] Ingestion stats: time {ctime}s, {itokens} tokens, {tps} tokens/s---")
         total_tokens += itokens
         prompt_no += 1
     avg_time = round(total_time / len(LONG_PROMPTS), ndigits=3)
@@ -135,7 +135,7 @@ def long_context_generation_test(i, api, model, avg_time):
         ctokens = api_out['usage']['completion_tokens']
         itokens = api_out['usage']['prompt_tokens']
         tps = round(ctokens / ctime, ndigits=1)
-        print(f"---[Thread {i}, API: {api}, Model: {model}, Prompt {prompt_no}, {itokens} tokens long] Generation stats: time {ctime}s, {ctokens} tokens, {tps} tokens/s---")
+        print(f"---[Thread {i}, Model: {model}, Prompt {prompt_no}, {itokens} tokens long] Generation stats: time {ctime}s, {ctokens} tokens, {tps} tokens/s---")
         total_tokens += ctokens
         prompt_no += 1
     avg_time = round(total_time / len(LONG_PROMPTS), ndigits=3)
