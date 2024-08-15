@@ -8,7 +8,7 @@ KEY = "APIKEY"
 
 # Define your API endpoints and associated models
 API_MODELS = {
-    "http://api.arliai.com/v1/chat/completions": ["Meta-Llama-3.1-8B-Instruct"]
+    "https://api.arliai.com/v1/chat/completions": ["Meta-Llama-3.1-8B-Instruct"]
 }
 
 SESSION = 2
