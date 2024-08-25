@@ -8,7 +8,7 @@ KEY = "APIKEY"
 
 # Define your API endpoints and associated models
 API_MODELS = {
-    "https://api.arliai.com/v1/chat/completions": ["Meta-Llama-3.1-8B-Instruct"]
+    "https://api.arliai.com/v1/chat/completions": ["Meta-Llama-3.1-70B-Instruct"]
 }
 
 SESSION = 1
@@ -130,8 +130,8 @@ def long_context_generation_test(i, api, model, avg_time):
         response = requests.request("POST", api, headers=headers, data=payload)
         api_out = response.json()
         ctime = round(time.time() - stime, ndigits=3)
-        total_time += ctime
         ctime = ctime - avg_time
+        total_time += ctime
         ctokens = api_out['usage']['completion_tokens']
         itokens = api_out['usage']['prompt_tokens']
         tps = round(ctokens / ctime, ndigits=1)
